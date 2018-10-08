@@ -12,7 +12,6 @@ const webpack = require('webpack');
 const BABEL_CONFIG = {
   babelrc: false,
   presets: [
-    'es2015',
     'react',
     'stage-2'
   ].map(function configMap(name) {
