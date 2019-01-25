@@ -210,6 +210,11 @@ export default class InteractiveMap extends PureComponent<InteractiveMapProps, S
     isHovering: false
   };
 
+  componentWillUnmount() {
+    const eventManager = this._eventManager;
+    eventManager.setElement(null);
+  }
+
   componentDidMount() {
     const eventManager = this._eventManager;
 

@@ -1,5 +1,5 @@
 {
-  "name": "react-map-gl",
+  "name": "@wimt/react-map-gl",
   "description": "A React wrapper for MapboxGL-js and overlay API.",
   "version": "4.0.0-beta.7",
   "keywords": [
@@ -29,7 +29,7 @@
   ],
   "scripts": {
     "start": "(cd examples/main && npm i && npm run start-local)",
-    "build": "./scripts/build.sh && ./scripts/collect-metrics.sh",
+    "build": "bash scripts/build.sh && bash scripts/collect-metrics.sh",
     "typecheck": "flow check",
     "preversion": "npm run test",
     "postversion": "git push && git push --tags",
