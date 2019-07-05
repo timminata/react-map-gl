@@ -45,6 +45,10 @@ Use an existing WebGLContext instead of creating a new one. This allows multiple
 Mapbox API access token for `MapboxGL`. Required when using Mapbox vector tiles/styles
 Mapbox WebGL context creation option. Useful when you want to export the canvas as a PNG
 
+##### `mapboxApiUrl` {String} - default `https://api.mapbox.com`
+
+Enables the use of private and country specific servers Mapbox servers, e.g. https://api.mapbox.cn/.
+
 ##### `mapOptions` {Object} - default: `{}`
 
 > Non-public API, see https://github.com/uber/react-map-gl/issues/545
@@ -136,6 +140,12 @@ Note: Either the `viewState`, or the `latitude`, `longitude` and `zoom` properti
 
 ### Render Options
 
+##### `asyncRender` {Bool} - default: `false`
+
+If `true`, let Mapbox manage its own render cycle. This is the behavior prior to v4.1.
+
+If `false`, force Mapbox canvas to redraw with DOM updates. This will make the map synchronize better with other controls during prop-driven viewport changes.
+
 ##### `style` {Object}
 
 The CSS style of the map container.
@@ -146,7 +156,7 @@ Whether the map is visible. Unmounting and re-mounting a Mapbox instance is know
 
 ##### `visibilityConstraints` {Object} ==EXPERIMENTAL==
 
-An object that specifies bounds for viewport props with `min*`, `max*` keys. If the viewport props are outside of these constraints, the Mapbox map is automatically hidden. 
+An object that specifies bounds for viewport props with `min*`, `max*` keys. If the viewport props are outside of these constraints, the Mapbox map is automatically hidden.
 
 Default: `{ minZoom: 0, maxZoom: 20, minPitch: 0, maxPitch: 60 }`
 
@@ -211,4 +221,4 @@ const viewport = new WebMercatorViewport({width: 800, height: 600})
 
 ## Source
 
-[static-map.js](https://github.com/uber/react-map-gl/tree/3.2-release/src/components/static-map.js)
+[static-map.js](https://github.com/uber/react-map-gl/tree/5.0-release/src/components/static-map.js)

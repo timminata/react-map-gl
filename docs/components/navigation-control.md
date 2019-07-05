@@ -4,16 +4,23 @@ This is a React equivalent of Mapbox's [NavigationControl](https://www.mapbox.co
 which provides zoom buttons and a compass button.
 
 ```js
-import {Component} from 'react';
+import React, {Component} from 'react';
 import ReactMapGL, {NavigationControl} from 'react-map-gl';
 
 class Map extends Component {
+  state = {
+    viewport: {longitude: -122.45, latitude: 37.78, zoom: 12}
+  };
+
   render() {
-    const {viewport, updateViewport} = this.props;
+    const {viewport} = this.state;
     return (
-      <ReactMapGL {...viewport} onViewportChange={updateViewport}>
+      <ReactMapGL {...viewport}
+        width="100vw"
+        height="100vh"
+        onViewportChange={viewport => this.setState({viewport})}>
         <div style={{position: 'absolute', right: 0}}>
-          <NavigationControl onViewportChange={updateViewport} />
+          <NavigationControl />
         </div>
       </ReactMapGL>
     );
@@ -23,8 +30,8 @@ class Map extends Component {
 
 ## Properties
 
-##### `onViewportChange` {Function}
-Callback when the viewport needs to be updated. See [InteractiveMap](/docs/components/interactive-map.md).
+##### `onViewportChange` {Function, optional}
+Callback when the user interaction with this control requests a viewport update. If provided, will be called instead of the containing [InteractiveMap](/docs/components/interactive-map.md)'s `onViewportChange`.
 
 ##### `showCompass` {Boolean} - default: `true`
 Show or hide the compass button
@@ -49,5 +56,5 @@ Stop propagation of dblclick event to the map component. Can be used to stop map
 Like its Mapbox counterpart, this control relies on the mapbox-gl stylesheet to work properly. Make sure to add the stylesheet to your page.
 
 ## Source
-[navigation-control.js](https://github.com/uber/react-map-gl/tree/3.2-release/src/components/navigation-control.js)
+[navigation-control.js](https://github.com/uber/react-map-gl/tree/5.0-release/src/components/navigation-control.js)
 

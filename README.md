@@ -2,8 +2,8 @@
   <a href="https://npmjs.org/package/react-map-gl">
     <img src="https://img.shields.io/npm/v/react-map-gl.svg?style=flat-square" alt="version" />
   </a>
-  <a href="https://travis-ci.org/uber/react-map-gl">
-    <img src="https://img.shields.io/travis/uber/react-map-gl/master.svg?style=flat-square" alt="build" />
+  <a href="https://travis-ci.com/uber/react-map-gl">
+    <img src="https://api.travis-ci.com/uber/react-map-gl.svg?branch=master" alt="build" />
   </a>
   <a href="https://npmjs.org/package/react-map-gl">
     <img src="https://img.shields.io/npm/dm/react-map-gl.svg?style=flat-square" alt="downloads" />
@@ -67,6 +67,7 @@ There are several ways to provide a token to your app, as showcased in some of t
 * Provide a `mapboxApiAccessToken` prop to the map component
 * Set the `MapboxAccessToken` environment variable (or set `REACT_APP_MAPBOX_ACCESS_TOKEN` if you are using Create React App)
 * Provide it in the URL, e.g `?access_token=TOKEN`
+* Provide `mapboxApiUrl` prop to the map component to override the default mapbox API URL
 
 But we would recommend using something like [dotenv](https://github.com/motdotla/dotenv) and put your key in an untracked `.env` file, that will then expose it as a `process.env` variable, with much less leaking risks.
 
