@@ -30,10 +30,10 @@
   ],
   "scripts": {
     "start": "(cd examples/main && npm i && npm run start-local)",
-    "build": "bash scripts/build.sh && bash scripts/collect-metrics.sh",
     "typecheck": "flow check",
     "bootstrap": "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn && ocular-bootstrap",
     "clean": "ocular-clean",
+    "build": "ocular-clean && ocular-build",
     "lint": "ocular-lint",
     "cover": "ocular-test cover",
     "publish-prod": "ocular-publish prod",
