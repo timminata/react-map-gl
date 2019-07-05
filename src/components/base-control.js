@@ -20,8 +20,7 @@
 // THE SOFTWARE.
 import {PureComponent, createElement, createRef} from 'react';
 import PropTypes from 'prop-types';
-import {InteractiveContext} from './interactive-map';
-import {StaticContext} from './static-map';
+import MapContext from './map-context';
 
 import type {MjolnirEvent} from 'mjolnir.js';
 
@@ -43,11 +42,12 @@ const defaultProps = {
   captureDoubleClick: true
 };
 
-export type ControlProps = {
+export type BaseControlProps = {
   captureScroll: boolean,
   captureDrag: boolean,
   captureClick: boolean,
-  captureDoubleClick: boolean
+  captureDoubleClick: boolean,
+  children?: any
 };
 
 /*
@@ -57,8 +57,11 @@ export type ControlProps = {
  * is almost always triggered by a viewport change, we almost definitely need to
  * recalculate the marker's position when the parent re-renders.
  */
-export default class BaseControl extends PureComponent<ControlProps> {
-
+export default class BaseControl<
+  Props: BaseControlProps,
+  State: any,
+  ContainerType: Element
+> extends PureComponent<Props, State> {
   static propTypes = propTypes;
   static defaultProps = defaultProps;
 
@@ -75,8 +78,9 @@ export default class BaseControl extends PureComponent<ControlProps> {
       this._events = {
         wheel: this._onScroll,
         panstart: this._onDragStart,
+        anyclick: this._onClick,
         click: this._onClick,
-        pointerup: this._onPointerUp
+        dblclick: this._onDblClick
       };
       eventManager.on(this._events, ref);
     }
@@ -91,58 +95,40 @@ export default class BaseControl extends PureComponent<ControlProps> {
 
   _context: any = {};
   _events: any = null;
-  _containerRef: {current: null | HTMLDivElement} = createRef();
+  _containerRef: {current: null | ContainerType} = createRef();
 
   _onScroll = (evt: MjolnirEvent) => {
     if (this.props.captureScroll) {
       evt.stopPropagation();
     }
-  }
+  };
 
   _onDragStart = (evt: MjolnirEvent) => {
     if (this.props.captureDrag) {
       evt.stopPropagation();
     }
-  }
+  };
 
-  _onPointerUp = (evt: MjolnirEvent) => {
+  _onDblClick = (evt: MjolnirEvent) => {
     if (this.props.captureDoubleClick) {
-      const {eventManager} = this._context;
-      const {options: {enable}} = eventManager.manager.get('doubletap');
-      // Temporarily disable doubletap
-      if (enable) {
-        eventManager._toggleRecognizer('doubletap', false);
-        /* global setTimeout */
-        setTimeout(() => {
-          eventManager._toggleRecognizer('doubletap', true);
-        }, 0);
-      }
+      evt.stopPropagation();
     }
-  }
+  };
 
   _onClick = (evt: MjolnirEvent) => {
     if (this.props.captureClick) {
       evt.stopPropagation();
     }
-  }
+  };
 
   _render() {
     throw new Error('_render() not implemented');
   }
 
   render() {
-    return (
-      createElement(InteractiveContext.Consumer, null,
-        (interactiveContext) => {
-          // Save event manager
-          return createElement(StaticContext.Consumer, null,
-            (staticContext) => {
-              this._context = Object.assign({}, interactiveContext, staticContext);
-              return this._render();
-            }
-          );
-        }
-      )
-    );
+    return createElement(MapContext.Consumer, null, context => {
+      this._context = context;
+      return this._render();
+    });
   }
 }

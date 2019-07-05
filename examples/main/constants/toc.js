@@ -12,10 +12,12 @@ import CustomCursor from '../../custom-cursor/src/app';
 import DraggableMarker from '../../draggable-markers/src/app';
 import GeoJson from '../../geojson/src/app';
 import GeoJsonAnimation from '../../geojson-animation/src/app';
+import LocateUser from '../../locate-user/src/app';
 import Interaction from '../../interaction/src/app';
 import Layers from '../../layers/src/app';
 import ViewportAnimation from '../../viewport-animation/src/app';
 import ZoomToBounds from '../../zoom-to-bounds/src/app';
+import Heatmap from '../../heatmap/src/app';
 
 export const BASIC_EXAMPLES = 'basicExamples';
 export const STANDALONE_EXAMPLES = 'standalonExamples';
@@ -55,6 +57,11 @@ export const standaloneExamples = [
     component: GeoJsonAnimation
   },
   {
+    path: 'locateUserExample',
+    name: 'Locate User',
+    component: LocateUser
+  },
+  {
     path: 'interactionExample',
     name: 'Limit Map Interaction',
     component: Interaction
@@ -73,6 +80,11 @@ export const standaloneExamples = [
     path: 'zoom-to-bounds',
     name: 'Zoom To Bounds',
     component: ZoomToBounds
+  },
+  {
+    path: 'heatmap',
+    name: 'Heatmap',
+    component: Heatmap
   }
 ];
 

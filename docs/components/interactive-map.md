@@ -37,6 +37,7 @@ Inherit the following props from [StaticMap](/docs/components/static-map.md):
 - `disableTokenWarning` {Bool}
 - `gl` {WebGLContext}
 - `mapboxApiAccessToken` {String}
+- `mapboxApiUrl` {String}
 - `mapOptions` {Object}
 - `preserveDrawingBuffer` {Bool}
 - `preventStyleDiffing` {Bool}
@@ -253,7 +254,11 @@ Called when the map is hovered over with mouse (not pressed). Receives a [Pointe
 
 ##### `onClick` {Function}
 
-Called when the map is clicked. Receives a [PointerEvent](/docs/components/pointer-event.md) object.
+Called when the map is single clicked. Receives a [PointerEvent](/docs/components/pointer-event.md) object. This event is not fired on double click therefore there may be a delay between pointer up and the event.
+
+##### `onNativeClick` {Function}
+
+Called when the map is clicked. Receives a [PointerEvent](/docs/components/pointer-event.md) object. This event is fired twice on double click.
 
 ##### `onDblClick` {Function}
 
@@ -326,5 +331,5 @@ Inherit the following methods from [StaticMap](/docs/components/static-map.md):
 
 
 ## Source
-[interactive-map.js](https://github.com/uber/react-map-gl/tree/3.2-release/src/components/interactive-map.js)
+[interactive-map.js](https://github.com/uber/react-map-gl/tree/5.0-release/src/components/interactive-map.js)
 

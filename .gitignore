@@ -2,6 +2,7 @@ dist/
 dist-es6/
 
 node_modules
+.nyc_output/
 coverage
 npm-debug.log
 
@@ -10,4 +11,8 @@ package-lock.json
 */**/package-lock.json
 yarn-error.log
 .DS_Store
+.reify-cache
+
+.idea
+
 .npmrc

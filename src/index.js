@@ -19,7 +19,7 @@
 // THE SOFTWARE.
 
 // React Map Components
-export {default as default} from './components/interactive-map';
+export {default} from './components/interactive-map';
 export {default as InteractiveMap} from './components/interactive-map';
 export {default as StaticMap} from './components/static-map';
 
@@ -27,6 +27,8 @@ export {default as StaticMap} from './components/static-map';
 export {default as BaseControl} from './components/base-control';
 export {default as Marker} from './components/marker';
 export {default as Popup} from './components/popup';
+export {default as FullscreenControl} from './components/fullscreen-control';
+export {default as GeolocateControl} from './components/geolocate-control';
 export {default as NavigationControl} from './components/navigation-control';
 
 // Overlays
@@ -44,4 +46,4 @@ export {
 export {default as MapController} from './utils/map-controller';
 
 // Experimental Features (May change in minor version bumps, use at your own risk)
-export {StaticContext as _MapContext} from './components/static-map';
+export {default as _MapContext} from './components/map-context';
